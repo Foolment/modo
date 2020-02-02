@@ -12,7 +12,6 @@ class LinePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    print('size.width=${size.width},size.height=${size.height}');
     Path path = Path();
     path.moveTo(0, size.height / 2);
     path.lineTo(size.width, size.height / 2);

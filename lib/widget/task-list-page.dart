@@ -38,8 +38,15 @@ class TaskListPage extends StatelessWidget {
                 ),
               ],
             ),
-            Icon(Icons.add_box, size: 50),
-            Text('Add List'),
+            Container(
+              margin: const EdgeInsets.only(top: 36, bottom: 14),
+              alignment: Alignment.center,
+              child: Image.asset('assets/images/ic_add_todo.png'),
+            ),
+            Container(
+                alignment: Alignment.center,
+                child: Text('Add List',
+                    style: TextStyle(color: Colors.grey[500], fontSize: 18))),
           ],
         ));
   }
