@@ -1,3 +1,4 @@
+import 'package:Modo/widget/line.dart';
 import 'package:flutter/material.dart';
 
 class TaskListPage extends StatelessWidget {
@@ -14,16 +15,27 @@ class TaskListPage extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
+                Expanded(
+                    child: Container(
+                        padding: const EdgeInsets.only(right: 30),
+                        child: CustomPaint(
+                            painter: LinePainter(
+                                strokeWidth: 1.5, color: Colors.grey[350])))),
                 Container(
                   margin: const EdgeInsets.only(right: 10),
                   child: Text('Tasks',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
                 ),
-                Text(
-                  'Lists',
-                  style: TextStyle(fontSize: 28, color: Colors.grey[500]),
-                )
+                Text('Lists',
+                    style: TextStyle(fontSize: 28, color: Colors.grey[500])),
+                Expanded(
+                  child: Container(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: CustomPaint(
+                          painter: LinePainter(
+                              strokeWidth: 1.5, color: Colors.grey[350]))),
+                ),
               ],
             ),
             Icon(Icons.add_box, size: 50),
