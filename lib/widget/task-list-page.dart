@@ -47,6 +47,34 @@ class TaskListPage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text('Add List',
                     style: TextStyle(color: Colors.grey[500], fontSize: 18))),
+            Container(
+              margin: const EdgeInsets.only(top: 45),
+              height: 400,
+              child: ListView(
+                padding: const EdgeInsets.only(left: 20, right: 40),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    width: 300,
+                    height: 400,
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(color: Color(0xFF3A2B85)),
+                  ),
+                  Container(
+                    width: 300,
+                    height: 400,
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(color: Color(0xFFE03535)),
+                  ),
+                  Container(
+                    width: 300,
+                    height: 400,
+                    margin: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(color: Color(0xFFD6B58D)),
+                  )
+                ],
+              ),
+            )
           ],
         ));
   }
