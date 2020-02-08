@@ -20,3 +20,4 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/ic_add_todo.png
+    - assets/images/ic_task_progress.png
