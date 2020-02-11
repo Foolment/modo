@@ -1,4 +1,3 @@
-import 'package:Modo/widget/task-list-page.dart';
 import 'package:Modo/widget/todo-list-page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
@@ -10,7 +9,7 @@ class ModoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // debugPaintSizeEnabled = true;
     return MaterialApp(
-      home: Scaffold(body: TaskListPage()),
+      home: Scaffold(body: TodoListPage()),
     );
   }
 }

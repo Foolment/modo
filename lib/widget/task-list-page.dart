@@ -41,7 +41,7 @@ class TaskListPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 36, bottom: 14),
               alignment: Alignment.center,
-              child: Image.asset('assets/images/ic_add_todo.png'),
+              child: Image.asset('assets/images/ic_add_task.png'),
             ),
             Container(
                 alignment: Alignment.center,
