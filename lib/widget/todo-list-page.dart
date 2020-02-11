@@ -33,6 +33,8 @@ class TodoListPage extends StatelessWidget {
         await Navigator.push(context, MaterialPageRoute(builder: (_) {
       return AddTodoPage();
     }));
-    todoListViewKey.currentState.addTodo(content as String);
+    if (content != null && content is String && content.isNotEmpty) {
+      todoListViewKey.currentState.addTodo(content);
+    }
   }
 }
