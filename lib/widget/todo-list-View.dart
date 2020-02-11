@@ -21,11 +21,17 @@ class TodoListViewState extends State<TodoListView> {
     ]);
   }
 
-  void addTodo(String content) {
-    setState(() {
-      _todoItems.add(TodoItem(content));
-    });
-  }
+  void addTodo(String content) => setState(() {
+        _todoItems.add(TodoItem(content));
+      });
+
+  void _toggleTodo(int index) => setState(() {
+        _todoItems[index].finished = !_todoItems[index].finished;
+      });
+
+  void _deleteTodo(int index) => setState(() {
+        _todoItems.removeAt(index);
+      });
 
   Widget _todoProgressView() {
     int total = _todoItems.length;
@@ -64,107 +70,59 @@ class TodoListViewState extends State<TodoListView> {
         context: context,
         child: ListView.builder(
             itemCount: _todoItems.length, itemBuilder: _buildTodoItemView));
-
-    // ListView(children: <Widget>[
-    //   ,
-    //   Container(
-    //       margin: const EdgeInsets.only(bottom: 24),
-    //       child: Row(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: <Widget>[
-    //           Container(
-    //             margin: const EdgeInsets.only(top: 4, right: 16),
-    //             child: SizedBox(
-    //                 width: 20,
-    //                 height: 20,
-    //                 child: Checkbox(value: false, onChanged: null)),
-    //           ),
-    //           Expanded(
-    //               child: Column(
-    //                   crossAxisAlignment: CrossAxisAlignment.start,
-    //                   mainAxisAlignment: MainAxisAlignment.center,
-    //                   children: <Widget>[
-    //                 Text(
-    //                   'Plan weekend outing',
-    //                   style: TextStyle(
-    //                       fontWeight: FontWeight.bold, fontSize: 18),
-    //                 )
-    //               ]))
-    //         ],
-    //       )),
-    //   Container(
-    //       margin: const EdgeInsets.only(left: 36, bottom: 24),
-    //       child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: <Widget>[
-    //             Text(
-    //               'Publish Friday blog post',
-    //               style: TextStyle(
-    //                   fontWeight: FontWeight.bold,
-    //                   fontSize: 18,
-    //                   decoration: TextDecoration.lineThrough,
-    //                   color: Color(0xFFE03535)),
-    //             ),
-    //             Container(
-    //                 margin: const EdgeInsets.only(top: 4),
-    //                 child: Text('Mon, Apr 30',
-    //                     style: TextStyle(color: Colors.grey[500])))
-    //           ])),
-    //   Container(
-    //       margin: const EdgeInsets.only(left: 36, bottom: 24),
-    //       child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: <Widget>[
-    //             Text(
-    //               'Wash cloths',
-    //               style: TextStyle(
-    //                   fontWeight: FontWeight.bold,
-    //                   fontSize: 18,
-    //                   decoration: TextDecoration.lineThrough,
-    //                   color: Color(0xFFE03535)),
-    //             )
-    //           ])),
-    // ]));
   }
 
   Widget _buildTodoItemView(BuildContext context, int index) {
     TodoItem item = _todoItems[index];
-    return Container(
-        margin: const EdgeInsets.only(bottom: 24),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(top: 4, right: 16),
-              child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: Checkbox(value: false, onChanged: null)),
-            ),
-            Expanded(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                  Text(
-                    item.content,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  Container(
-                      margin: const EdgeInsets.only(top: 4),
-                      child: Text(item.date,
-                          style: TextStyle(color: Colors.grey[500])))
-                ])),
-            Container(
-                margin: const EdgeInsets.only(right: 32),
-                child: Icon(
-                  Icons.close,
-                  color: Colors.grey[500],
-                ))
-          ],
-        ));
+    return GestureDetector(
+        onTap: () {
+          _toggleTodo(index);
+        },
+        child: Container(
+            margin: const EdgeInsets.only(bottom: 24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    margin: const EdgeInsets.only(top: 4, right: 14),
+                    child: Image.asset(
+                        'assets/images/ic_checkbox_${item.finished ? '' : 'un'}selected.png',
+                        width: 22,
+                        height: 20)),
+                Expanded(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          item.content,
+                          style: item.finished
+                              ? TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  decoration: TextDecoration.lineThrough,
+                                  color: Color(0xFFE03535))
+                              : TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        Container(
+                            margin: const EdgeInsets.only(top: 4),
+                            child: Text(item.date,
+                                style: TextStyle(color: Colors.grey[500])))
+                      ]),
+                ),
+                GestureDetector(
+                    onTap: () {
+                      _deleteTodo(index);
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.only(right: 32),
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.grey[500],
+                        )))
+              ],
+            )));
   }
 
   int _finishedTodoItemsCount() {

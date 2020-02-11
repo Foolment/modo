@@ -22,3 +22,5 @@ flutter:
     - assets/images/ic_add_task.png
     - assets/images/ic_add_todo.png
     - assets/images/ic_task_progress.png
+    - assets/images/ic_checkbox_selected.png
+    - assets/images/ic_checkbox_unselected.png
