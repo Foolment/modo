@@ -41,8 +41,13 @@ class TodoListViewState extends State<TodoListView> {
       children: <Widget>[
         Container(
             margin: const EdgeInsets.only(right: 16),
-            child: Image.asset('assets/images/ic_task_progress.png',
-                width: 20, height: 20)),
+            child: SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                    backgroundColor: Colors.grey[300],
+                    valueColor: AlwaysStoppedAnimation(Color(0xFFE03535)),
+                    value: total == 0 ? 0 : finished / total))),
         Text('$finished of $total task${total > 1 ? 's' : ''}',
             style: TextStyle(color: Colors.grey[500], fontSize: 16))
       ],
